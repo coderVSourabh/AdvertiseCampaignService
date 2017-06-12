@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Advertise Manager</title>
+<link rel="stylesheet" href="../ui-static/adStyles.css">
+</head>
+<body onload="elementfocus()">
+	<script type="text/javascript" src="../ui-static/adValidation.js"></script>
+	<h1 class="adHomeHead">Please Enter Advertise Partner ID</h1>
+	<div id="adGetterDiv">
+		<form id="adGetter" class="adHomeHead" style="text-decoration:none" onsubmit="return false">
+		  <div>
+		  	<span>
+		  		<input type="text" id="partnerText" required name="partner_id" placeholder="Partner ID">
+		  	</span>
+		  </div>
+		  <label></label>
+		  <button type="submit"  onclick="getAd()">Submit</button>
+		</form>
+	</div>
+	<div>
+      <span id="retunClick">
+     	<a href="../../welcome.html">Return</a>
+      </span>	
+    </div>
+    
+    <div id="adMessage" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	     <span class="close">&times;</span>
+	        <p id="modalPara" class="modelText"></p>
+	  </div>
+
+    </div>
+    
+</body>
+</html>

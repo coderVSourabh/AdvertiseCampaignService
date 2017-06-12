@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <context:annotation-config/>
+       <context:component-scan base-package="com.vsourabh.simplead"/>
+       
+      <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="location" value="/WEB-INF/classes/resources/adapp.properties"/>
+	   </bean>
+
+       <bean id="dataSource" 
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        	<property name="driverClassName" value="${mySql.driverClassName}" />
+        	<property name="url" value="${mySql.url}" />
+        	<property name="username" value="${mySql.username}" />
+        	<property name="password" value="${mySql.password}" />
+        </bean>
+        
+        <bean id="adSaveSP" class="com.vsourabh.simplead.helper.AdStoredProcedure">
+        	<property name="procName" value="SaveAdCampaign" />
+        </bean>
+
+        <bean id="jdbcModuleImpl" class="com.vsourabh.simplead.service.JdbcModuleImpl">
+        	<property name="dataSource" ref="dataSource" />
+        	<property name="adStoredProcedure" ref="adSaveSP"/>
+        </bean>
+        
+        <bean id="adService" class="com.vsourabh.simplead.service.AdService">
+        	<property name="jdbcModule" ref="jdbcModuleImpl" />
+        </bean>
+
+        <bean id="adAppContextBuilder" class="com.vsourabh.simplead.helper.AdAppContextBuilder"/>
+        
+        
+</beans>

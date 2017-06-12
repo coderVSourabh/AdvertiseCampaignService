@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container,
+     see implementation details 
+     http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xmlns="http://java.sun.com/xml/ns/javaee" 
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		             http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+		version="2.5">
+		
+  <welcome-file-list>  
+     <welcome-file>welcome.html</welcome-file>  
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>AdServlet Web</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.vsourabh.simplead</param-value> <!-- Init Package -->
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdServlet Web</servlet-name>
+    <url-pattern>/webapp/*</url-pattern> <!-- URL which looks for servlet -->
+  </servlet-mapping>
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/resources/adApplicationContext.xml</param-value>
+  </context-param>
+  <listener>
+   <listener-class>
+        org.springframework.web.context.ContextLoaderListener
+   </listener-class>
+  </listener> 
+  
+</web-app>
